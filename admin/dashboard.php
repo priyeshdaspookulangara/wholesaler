@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../core/db_connect.php";
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
@@ -49,6 +50,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </li>
             <li>
                 <a href="<?php echo BASE_URL; ?>/admin/products.php">Products</a>
+            </li>
+            <li>
+                <a href="<?php echo BASE_URL; ?>/admin/reviews.php">Reviews</a>
             </li>
             <li>
                 <a href="<?php echo BASE_URL; ?>/admin/inquiries.php">Inquiries</a>

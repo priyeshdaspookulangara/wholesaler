@@ -1,12 +1,11 @@
 <?php
 session_start();
+require_once "../core/db_connect.php";
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
     exit;
 }
-
-require_once "../core/db_connect.php";
 
 $sql = "SELECT p.id, p.name, c.name as category, sc.name as sub_category, b.name as brand, sb.name as sub_brand
         FROM products p
@@ -50,25 +49,28 @@ $result = mysqli_query($conn, $sql);
         <ul class="list-unstyled components">
             <p>Wholesaler Site</p>
             <li>
-                <a href="dashboard.php">Dashboard</a>
+                <a href="<?php echo BASE_URL; ?>/admin/dashboard.php">Dashboard</a>
             </li>
             <li>
-                <a href="categories.php">Categories</a>
+                <a href="<?php echo BASE_URL; ?>/admin/categories.php">Categories</a>
             </li>
             <li>
-                <a href="brands.php">Brands</a>
+                <a href="<?php echo BASE_URL; ?>/admin/brands.php">Brands</a>
             </li>
             <li class="active">
-                <a href="products.php">Products</a>
+                <a href="<?php echo BASE_URL; ?>/admin/products.php">Products</a>
             </li>
             <li>
-                <a href="inquiries.php">Inquiries</a>
+                <a href="<?php echo BASE_URL; ?>/admin/reviews.php">Reviews</a>
             </li>
             <li>
-                <a href="messages.php">Contact Messages</a>
+                <a href="<?php echo BASE_URL; ?>/admin/inquiries.php">Inquiries</a>
             </li>
             <li>
-                <a href="users.php">Users</a>
+                <a href="<?php echo BASE_URL; ?>/admin/messages.php">Contact Messages</a>
+            </li>
+            <li>
+                <a href="<?php echo BASE_URL; ?>/admin/users.php">Users</a>
             </li>
         </ul>
     </nav>
@@ -78,7 +80,7 @@ $result = mysqli_query($conn, $sql);
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Products</a>
-                <a href="logout.php" class="btn btn-danger">Logout</a>
+                <a href="<?php echo BASE_URL; ?>/admin/logout.php" class="btn btn-danger">Logout</a>
             </div>
         </nav>
 
@@ -86,7 +88,7 @@ $result = mysqli_query($conn, $sql);
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
                     <h2>Products</h2>
-                    <a href="add_product.php" class="btn btn-primary">Add New Product</a>
+                    <a href="<?php echo BASE_URL; ?>/admin/add_product.php" class="btn btn-primary">Add New Product</a>
                 </div>
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -112,9 +114,9 @@ $result = mysqli_query($conn, $sql);
                                     echo "<td>" . htmlspecialchars($row['brand']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['sub_brand']) . "</td>";
                                     echo "<td>";
-                                        echo "<a href='edit_product.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>Edit</a>";
+                                        echo "<a href='" . BASE_URL . "/admin/edit_product.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>Edit</a>";
                                         echo "&nbsp;";
-                                        echo "<a href='delete_product.php?id=". $row['id'] ."' class='btn btn-danger btn-sm'>Delete</a>";
+                                        echo "<a href='" . BASE_URL . "/admin/delete_product.php?id=". $row['id'] ."' class='btn btn-danger btn-sm'>Delete</a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }

@@ -68,6 +68,66 @@ if ($product):
     </div>
 </div>
 
+<hr>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <h3>Customer Reviews</h3>
+        <?php
+        $sql_reviews = "SELECT * FROM product_reviews WHERE product_id = {$product['id']} AND status = 'approved' ORDER BY created_at DESC";
+        $result_reviews = mysqli_query($conn, $sql_reviews);
+        if (mysqli_num_rows($result_reviews) > 0):
+            while($review = mysqli_fetch_assoc($result_reviews)):
+        ?>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo htmlspecialchars($review['reviewer_name']); ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <?php for ($i = 0; $i < $review['rating']; $i++) echo '&#9733;'; ?>
+                    </h6>
+                    <p class="card-text"><?php echo nl2br(htmlspecialchars($review['review_text'])); ?></p>
+                </div>
+            </div>
+        <?php
+            endwhile;
+        else:
+            echo "<p>No reviews yet. Be the first to review this product!</p>";
+        endif;
+        ?>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <?php if (isset($_GET['review_success'])): ?>
+            <div class="alert alert-success">Thank you for your review! It is pending approval from an administrator.</div>
+        <?php endif; ?>
+        <h4>Leave a Review</h4>
+        <form action="<?php echo BASE_URL; ?>/submit_review.php" method="post">
+            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+            <div class="mb-3">
+                <label for="reviewer_name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="reviewer_name" name="reviewer_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <select class="form-select" id="rating" name="rating" required>
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+                    <option value="3">&#9733;&#9733;&#9733;</option>
+                    <option value="2">&#9733;&#9733;</option>
+                    <option value="1">&#9733;</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="review_text" class="form-label">Your Review</label>
+                <textarea class="form-control" id="review_text" name="review_text" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+</div>
+
 <div class="row mt-5">
     <div class="col-md-12">
         <h3>Other Items in this Brand</h3>

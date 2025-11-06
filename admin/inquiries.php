@@ -1,12 +1,11 @@
 <?php
 session_start();
+require_once "../core/db_connect.php";
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
     exit;
 }
-
-require_once "../core/db_connect.php";
 
 $sql = "SELECT * FROM enquiries ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
@@ -45,25 +44,28 @@ $result = mysqli_query($conn, $sql);
         <ul class="list-unstyled components">
             <p>Wholesaler Site</p>
             <li>
-                <a href="dashboard.php">Dashboard</a>
+                <a href="<?php echo BASE_URL; ?>/admin/dashboard.php">Dashboard</a>
             </li>
             <li>
-                <a href="categories.php">Categories</a>
+                <a href="<?php echo BASE_URL; ?>/admin/categories.php">Categories</a>
             </li>
             <li>
-                <a href="brands.php">Brands</a>
+                <a href="<?php echo BASE_URL; ?>/admin/brands.php">Brands</a>
             </li>
             <li>
-                <a href="products.php">Products</a>
+                <a href="<?php echo BASE_URL; ?>/admin/products.php">Products</a>
+            </li>
+            <li>
+                <a href="<?php echo BASE_URL; ?>/admin/reviews.php">Reviews</a>
             </li>
             <li class="active">
-                <a href="inquiries.php">Inquiries</a>
+                <a href="<?php echo BASE_URL; ?>/admin/inquiries.php">Inquiries</a>
             </li>
             <li>
-                <a href="messages.php">Contact Messages</a>
+                <a href="<?php echo BASE_URL; ?>/admin/messages.php">Contact Messages</a>
             </li>
             <li>
-                <a href="users.php">Users</a>
+                <a href="<?php echo BASE_URL; ?>/admin/users.php">Users</a>
             </li>
         </ul>
     </nav>
@@ -73,7 +75,7 @@ $result = mysqli_query($conn, $sql);
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Inquiries</a>
-                <a href="logout.php" class="btn btn-danger">Logout</a>
+                <a href="<?php echo BASE_URL; ?>/admin/logout.php" class="btn btn-danger">Logout</a>
             </div>
         </nav>
 
@@ -104,7 +106,7 @@ $result = mysqli_query($conn, $sql);
                                     echo "<td>" . htmlspecialchars($row['message']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
                                     echo "<td>";
-                                        echo "<a href='view_inquiry.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>View</a>";
+                                        echo "<a href='" . BASE_URL . "/admin/view_inquiry.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>View</a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }
