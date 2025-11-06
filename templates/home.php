@@ -21,10 +21,10 @@ $result_promotional = mysqli_query($conn, $sql_promotional);
                     $result_img = mysqli_query($conn, $sql_img);
                     $img = mysqli_fetch_assoc($result_img);
                     ?>
-                    <img src="/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                    <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                        <a href="/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
+                        <a href="<?php echo BASE_URL; ?>/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -45,10 +45,10 @@ $result_promotional = mysqli_query($conn, $sql_promotional);
                     $result_img = mysqli_query($conn, $sql_img);
                     $img = mysqli_fetch_assoc($result_img);
                     ?>
-                    <img src="/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                    <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                        <a href="/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
+                        <a href="<?php echo BASE_URL; ?>/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -69,10 +69,10 @@ $result_promotional = mysqli_query($conn, $sql_promotional);
                     $result_img = mysqli_query($conn, $sql_img);
                     $img = mysqli_fetch_assoc($result_img);
                     ?>
-                    <img src="/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                    <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($img['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                        <a href="/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
+                        <a href="<?php echo BASE_URL; ?>/product/<?php echo htmlspecialchars($row['slug']); ?>" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>

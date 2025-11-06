@@ -1,4 +1,15 @@
 RewriteEngine On
+
+# ----------------------------------------------------------------------
+# If your website is running in a subfolder, you need to set the RewriteBase.
+# For example, if your URL is http://example.com/my-project/, then
+# the RewriteBase should be /my-project/.
+#
+# If your website is at the root of your domain (e.g., http://example.com/),
+# you can comment out the RewriteBase line or set it to /.
+# ----------------------------------------------------------------------
+# RewriteBase /your-subfolder/
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]

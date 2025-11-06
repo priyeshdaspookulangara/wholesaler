@@ -14,7 +14,7 @@ $result = mysqli_query($conn, $sql);
         <h2>Browse by Brand</h2>
         <div class="mb-3">
             <?php foreach (range('A', 'Z') as $char): ?>
-                <a href="/brands?letter=<?php echo $char; ?>" class="btn btn-primary"><?php echo $char; ?></a>
+                <a href="<?php echo BASE_URL; ?>/brands?letter=<?php echo $char; ?>" class="btn btn-primary"><?php echo $char; ?></a>
             <?php endforeach; ?>
         </div>
 
@@ -23,8 +23,8 @@ $result = mysqli_query($conn, $sql);
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <div class="col-md-3">
                         <div class="card mb-4">
-                            <a href="/product/brand/<?php echo htmlspecialchars($row['slug']); ?>">
-                                <img src="/uploads/<?php echo htmlspecialchars($row['logo']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                            <a href="<?php echo BASE_URL; ?>/product/brand/<?php echo htmlspecialchars($row['slug']); ?>">
+                                <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($row['logo']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>">
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><?php echo htmlspecialchars($row['name']); ?></h5>
                                 </div>

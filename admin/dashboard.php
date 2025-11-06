@@ -39,25 +39,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <ul class="list-unstyled components">
             <p>Wholesaler Site</p>
             <li class="active">
-                <a href="dashboard.php">Dashboard</a>
+                <a href="<?php echo BASE_URL; ?>/admin/dashboard.php">Dashboard</a>
             </li>
             <li>
-                <a href="categories.php">Categories</a>
+                <a href="<?php echo BASE_URL; ?>/admin/categories.php">Categories</a>
             </li>
             <li>
-                <a href="brands.php">Brands</a>
+                <a href="<?php echo BASE_URL; ?>/admin/brands.php">Brands</a>
             </li>
             <li>
-                <a href="products.php">Products</a>
+                <a href="<?php echo BASE_URL; ?>/admin/products.php">Products</a>
             </li>
             <li>
-                <a href="inquiries.php">Inquiries</a>
+                <a href="<?php echo BASE_URL; ?>/admin/inquiries.php">Inquiries</a>
             </li>
             <li>
-                <a href="messages.php">Contact Messages</a>
+                <a href="<?php echo BASE_URL; ?>/admin/messages.php">Contact Messages</a>
             </li>
             <li>
-                <a href="users.php">Users</a>
+                <a href="<?php echo BASE_URL; ?>/admin/users.php">Users</a>
             </li>
         </ul>
     </nav>
@@ -67,7 +67,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Dashboard</a>
-                <a href="logout.php" class="btn btn-danger">Logout</a>
+                <a href="<?php echo BASE_URL; ?>/admin/logout.php" class="btn btn-danger">Logout</a>
             </div>
         </nav>
 

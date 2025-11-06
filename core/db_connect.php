@@ -1,4 +1,6 @@
 <?php
+require_once('config.php');
+
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'jeoczvkk_priyesh');
 define('DB_PASSWORD', 'pearlsPearls2#');

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "core/db_connect.php";
 
 if(isset($_GET['id'])){
     $product_id = $_GET['id'];
@@ -8,5 +9,5 @@ if(isset($_GET['id'])){
     }
 }
 
-header("Location: /enquiry-basket");
+header("Location: " . BASE_URL . "/enquiry-basket");
 ?>

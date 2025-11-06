@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "core/db_connect.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $product_id = $_POST['product_id'];

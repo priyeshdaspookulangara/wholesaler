@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="alert alert-success"><?php echo $success_msg; ?></div>
         <?php endif; ?>
 
-        <form action="/contact" method="post">
+        <form action="<?php echo BASE_URL; ?>/contact" method="post">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">

@@ -66,9 +66,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_inquiry'])){
             <tbody>
                 <?php foreach($basket_items as $item): ?>
                 <tr>
-                    <td><a href="/product/<?php echo htmlspecialchars($item['slug']); ?>"><?php echo htmlspecialchars($item['name']); ?></a></td>
+                    <td><a href="<?php echo BASE_URL; ?>/product/<?php echo htmlspecialchars($item['slug']); ?>"><?php echo htmlspecialchars($item['name']); ?></a></td>
                     <td><?php echo htmlspecialchars($_SESSION['basket'][$item['id']]); ?></td>
-                    <td><a href="/remove_from_basket.php?id=<?php echo htmlspecialchars($item['id']); ?>" class="btn btn-danger btn-sm">Remove</a></td>
+                    <td><a href="<?php echo BASE_URL; ?>/remove_from_basket.php?id=<?php echo htmlspecialchars($item['id']); ?>" class="btn btn-danger btn-sm">Remove</a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_inquiry'])){
         <?php if($success_msg): ?>
         <div class="alert alert-success"><?php echo $success_msg; ?></div>
         <?php endif; ?>
-        <form action="/enquiry-basket" method="post">
+        <form action="<?php echo BASE_URL; ?>/enquiry-basket" method="post">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">

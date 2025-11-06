@@ -21,7 +21,7 @@ if ($product):
             <div class="carousel-inner">
                 <?php $i = 0; while($row_image = mysqli_fetch_assoc($result_images)): ?>
                 <div class="carousel-item <?php echo ($i == 0) ? 'active' : ''; ?>">
-                    <img src="/uploads/<?php echo htmlspecialchars($row_image['image_path']); ?>" class="d-block w-100" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($row_image['image_path']); ?>" class="d-block w-100" alt="<?php echo htmlspecialchars($product['name']); ?>">
                 </div>
                 <?php $i++; endwhile; ?>
             </div>
@@ -41,7 +41,7 @@ if ($product):
         <p><strong>Brand:</strong> <?php echo htmlspecialchars($product['brand_name']); ?> <?php if($product['sub_brand_name']) echo '> ' . htmlspecialchars($product['sub_brand_name']); ?></p>
         <p><?php echo htmlspecialchars($product['description']); ?></p>
 
-        <form action="/add_to_basket.php" method="post">
+        <form action="<?php echo BASE_URL; ?>/add_to_basket.php" method="post">
             <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id']); ?>">
             <div class="input-group mb-3" style="max-width: 200px;">
                 <input type="number" name="quantity" class="form-control" value="1" min="1">
@@ -84,10 +84,10 @@ if ($product):
                     $result_img_related = mysqli_query($conn, $sql_img_related);
                     $img_related = mysqli_fetch_assoc($result_img_related);
                     ?>
-                    <img src="/uploads/<?php echo htmlspecialchars($img_related['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row_related['name']); ?>">
+                    <img src="<?php echo BASE_URL; ?>/uploads/<?php echo htmlspecialchars($img_related['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row_related['name']); ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($row_related['name']); ?></h5>
-                        <a href="/product/<?php echo htmlspecialchars($row_related['slug']); ?>" class="btn btn-primary">View Details</a>
+                        <a href="<?php echo BASE_URL; ?>/product/<?php echo htmlspecialchars($row_related['slug']); ?>" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@ if ($product):
     <div class="col-md-12 text-center">
         <h1>Product Not Found</h1>
         <p>Sorry, the product you are looking for does not exist.</p>
-        <a href="/" class="btn btn-primary">Go to Homepage</a>
+        <a href="<?php echo BASE_URL; ?>/" class="btn btn-primary">Go to Homepage</a>
     </div>
 </div>
 <?php endif; ?>
