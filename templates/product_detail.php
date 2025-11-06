@@ -10,8 +10,9 @@ $sql = "SELECT p.*, c.name as category_name, sc.name as sub_category_name, b.nam
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
 
-$sql_images = "SELECT image_path FROM product_images WHERE product_id = " . $product['id'];
-$result_images = mysqli_query($conn, $sql_images);
+if ($product):
+    $sql_images = "SELECT image_path FROM product_images WHERE product_id = " . $product['id'];
+    $result_images = mysqli_query($conn, $sql_images);
 ?>
 
 <div class="row">
@@ -94,3 +95,12 @@ $result_images = mysqli_query($conn, $sql_images);
         </div>
     </div>
 </div>
+<?php else: ?>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Product Not Found</h1>
+        <p>Sorry, the product you are looking for does not exist.</p>
+        <a href="/" class="btn btn-primary">Go to Homepage</a>
+    </div>
+</div>
+<?php endif; ?>
