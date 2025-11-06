@@ -67,7 +67,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    mysqli_close($conn);
 }
 ?>
 
@@ -200,3 +199,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </script>
 </body>
 </html>
+<?php mysqli_close($conn); ?>

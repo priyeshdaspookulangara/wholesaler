@@ -68,7 +68,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         }
     }
 
-    mysqli_close($conn);
 } else {
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         $id =  trim($_GET["id"]);
@@ -253,3 +252,4 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     </script>
 </body>
 </html>
+<?php mysqli_close($conn); ?>

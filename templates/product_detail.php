@@ -50,16 +50,29 @@ $result_images = mysqli_query($conn, $sql_images);
 
         <hr>
         <h3>Specifications</h3>
-        <p><?php echo nl2br(htmlspecialchars($product['specifications'])); ?></p>
+        <table class="table table-bordered">
+            <?php
+            $specs = explode("\n", $product['specifications']);
+            foreach ($specs as $spec) {
+                $parts = explode(":", $spec);
+                if (count($parts) == 2) {
+                    echo "<tr>";
+                    echo "<th>" . htmlspecialchars(trim($parts[0])) . "</th>";
+                    echo "<td>" . htmlspecialchars(trim($parts[1])) . "</td>";
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </table>
     </div>
 </div>
 
 <div class="row mt-5">
     <div class="col-md-12">
-        <h3>Related Products</h3>
+        <h3>Other Items in this Brand</h3>
         <div class="row">
             <?php
-            $sql_related = "SELECT * FROM products WHERE category_id = " . $product['category_id'] . " AND id != " . $product['id'] . " LIMIT 4";
+            $sql_related = "SELECT * FROM products WHERE brand_id = " . $product['brand_id'] . " AND id != " . $product['id'] . " LIMIT 4";
             $result_related = mysqli_query($conn, $sql_related);
             while($row_related = mysqli_fetch_assoc($result_related)):
             ?>
