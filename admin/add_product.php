@@ -118,7 +118,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label>Brand</label>
                         <select name="brand_id" id="brand_id" class="form-control">
                             <option value="">Select Brand</option>
-                            <?php while($row = mysqli_fetch_assoc($result_brands)){ ?>
+                            <?php
+                            $sql_brands_refetch = "SELECT * FROM brands";
+                            $result_brands_refetch = mysqli_query($conn, $sql_brands_refetch);
+                            while($row = mysqli_fetch_assoc($result_brands_refetch)){ ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
                             <?php } ?>
                         </select>

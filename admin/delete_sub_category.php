@@ -47,12 +47,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <p>Are you sure you want to delete this sub category? This action cannot be undone.</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="sub_categories.php?category_id=<?php $sql_get_cat = "SELECT category_id FROM sub_categories WHERE id = " . trim($_GET["id"]);
-    require_once "../core/db_connect.php";
-$result_get_cat = mysqli_query($conn, $sql_get_cat);
-$row_get_cat = mysqli_fetch_assoc($result_get_cat);
-echo $row_get_cat['category_id'];
- ?>" class="btn btn-secondary">No</a>
+<a href="sub_categories.php?category_id=<?php echo htmlspecialchars(trim($_GET["category_id"])); ?>" class="btn btn-secondary">No</a>
                             </p>
                         </div>
                     </form>

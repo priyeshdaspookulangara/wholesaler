@@ -147,7 +147,10 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <label>Brand</label>
                         <select name="brand_id" id="brand_id" class="form-control">
                             <option value="">Select Brand</option>
-                            <?php while($row_brand = mysqli_fetch_assoc($result_brands)){ ?>
+                            <?php
+                            $sql_brands_refetch = "SELECT * FROM brands";
+                            $result_brands_refetch = mysqli_query($conn, $sql_brands_refetch);
+                            while($row_brand = mysqli_fetch_assoc($result_brands_refetch)){ ?>
                             <option value="<?php echo $row_brand['id']; ?>" <?php echo ($brand_id == $row_brand['id']) ? 'selected' : ''; ?>><?php echo $row_brand['name']; ?></option>
                             <?php } ?>
                         </select>

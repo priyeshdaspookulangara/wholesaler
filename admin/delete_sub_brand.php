@@ -56,12 +56,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <p>Are you sure you want to delete this sub brand? This action cannot be undone.</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="sub_brands.php?brand_id=<?php $sql_get_brand = "SELECT brand_id FROM sub_brands WHERE id = " . trim($_GET["id"]);
-    require_once "../core/db_connect.php";
-$result_get_brand = mysqli_query($conn, $sql_get_brand);
-$row_get_brand = mysqli_fetch_assoc($result_get_brand);
-echo $row_get_brand['brand_id'];
- ?>" class="btn btn-secondary">No</a>
+<a href="sub_brands.php?brand_id=<?php echo htmlspecialchars(trim($_GET["brand_id"])); ?>" class="btn btn-secondary">No</a>
                             </p>
                         </div>
                     </form>

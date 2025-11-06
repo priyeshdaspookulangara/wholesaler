@@ -111,7 +111,7 @@ $brand_name = $brand_row['name'];
                                     echo "<td>";
                                         echo "<a href='edit_sub_brand.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>Edit</a>";
                                         echo "&nbsp;";
-                                        echo "<a href='delete_sub_brand.php?id=". $row['id'] ."' class='btn btn-danger btn-sm'>Delete</a>";
+                                        echo "<a href='delete_sub_brand.php?id=". $row['id'] ."&brand_id=". $brand_id ."' class='btn btn-danger btn-sm'>Delete</a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }

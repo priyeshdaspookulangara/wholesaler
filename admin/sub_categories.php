@@ -109,7 +109,7 @@ $category_name = $category_row['name'];
                                     echo "<td>";
                                         echo "<a href='edit_sub_category.php?id=". $row['id'] ."' class='btn btn-primary btn-sm'>Edit</a>";
                                         echo "&nbsp;";
-                                        echo "<a href='delete_sub_category.php?id=". $row['id'] ."' class='btn btn-danger btn-sm'>Delete</a>";
+                                        echo "<a href='delete_sub_category.php?id=". $row['id'] ."&category_id=". $category_id ."' class='btn btn-danger btn-sm'>Delete</a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }

@@ -12,6 +12,9 @@ if ($slug) {
         case 'product':
             include 'templates/product_detail.php';
             break;
+        case 'brands':
+            include 'templates/brands.php';
+            break;
         case 'category':
             include 'templates/product_listing.php';
             break;
