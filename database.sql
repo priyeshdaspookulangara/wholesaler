@@ -34,6 +34,34 @@ CREATE TABLE `admins` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `parent_id`, `name`, `slug`, `logo`, `created_at`) VALUES
+(1, NULL, '7up', '7up', '7up.png', '2023-11-04 08:00:00'),
+(2, NULL, 'Coca-Cola', 'coca-cola', 'coca-cola.png', '2023-11-04 08:00:00'),
+(3, NULL, 'Fanta', 'fanta', 'fanta.png', '2023-11-04 08:00:00'),
+(4, NULL, 'Mtn Dew', 'mtn-dew', 'mtn-dew.png', '2023-11-04 08:00:00'),
+(5, NULL, 'Pepsi', 'pepsi', 'pepsi.png', '2023-11-04 08:00:00'),
+(6, NULL, 'Sprite', 'sprite', 'sprite.png', '2023-11-04 08:00:00'),
+(7, NULL, 'Sunkist', 'sunkist', 'sunkist.png', '2023-11-04 08:00:00'),
+(8, NULL, 'Dr Pepper', 'dr-pepper', 'dr-pepper.png', '2023-11-04 08:00:00'),
+(9, NULL, 'Aquafina', 'aquafina', 'aquafina.png', '2023-11-04 08:00:00'),
+(10, NULL, 'Dasani', 'dasani', 'dasani.png', '2023-11-04 08:00:00'),
+(11, NULL, 'Evian', 'evian', 'evian.png', '2023-11-04 08:00:00'),
+(12, NULL, 'LaCroix', 'lacroix', 'lacroix.png', '2023-11-04 08:00:00'),
+(13, NULL, 'smartwater', 'smartwater', 'smartwater.png', '2023-11-04 08:00:00'),
+(14, NULL, 'Poland', 'poland', 'poland.png', '2023-11-04 08:00:00'),
+(15, NULL, 'Minute Maid', 'minute-maid', 'minute-maid.png', '2023-11-04 08:00:00'),
+(16, NULL, 'Ocean Spray', 'ocean-spray', 'ocean-spray.png', '2023-11-04 08:00:00'),
+(17, NULL, 'Pure Leaf', 'pure-leaf', 'pure-leaf.png', '2023-11-04 08:00:00'),
+(18, NULL, 'Tropicana', 'tropicana', 'tropicana.png', '2023-11-04 08:00:00'),
+(19, NULL, 'V8', 'v8', 'v8.png', '2023-11-04 08:00:00'),
+(20, NULL, 'Bai', 'bai', 'bai.png', '2023-11-04 08:00:00'),
+(21, NULL, 'Monster', 'monster', 'monster.png', '2023-11-04 08:00:00'),
+(22, NULL, 'Red Bull', 'red-bull', 'red-bull.png', '2023-11-04 08:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +70,7 @@ CREATE TABLE `admins` (
 
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
@@ -180,7 +209,8 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `parent_id` (`parent_id`);
 
 --
 -- Indexes for table `categories`
@@ -257,7 +287,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -310,6 +340,12 @@ ALTER TABLE `sub_categories`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `brands`
+--
+ALTER TABLE `brands`
+  ADD CONSTRAINT `brands_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `brands` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `enquiry_items`

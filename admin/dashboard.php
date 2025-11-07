@@ -1,86 +1,94 @@
 <?php
-session_start();
+require_once __DIR__ . '/../core/db_connect.php';
+require_once __DIR__ . '/../templates/admin_header.php';
 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: index.php");
-    exit;
-}
+// Fetch data for summary cards
+$products_count_result = mysqli_query($conn, "SELECT COUNT(*) AS count FROM products");
+$products_count = mysqli_fetch_assoc($products_count_result)['count'];
+
+$categories_count_result = mysqli_query($conn, "SELECT COUNT(*) AS count FROM categories");
+$categories_count = mysqli_fetch_assoc($categories_count_result)['count'];
+
+$brands_count_result = mysqli_query($conn, "SELECT COUNT(*) AS count FROM brands");
+$brands_count = mysqli_fetch_assoc($brands_count_result)['count'];
+
+$inquiries_count_result = mysqli_query($conn, "SELECT COUNT(*) AS count FROM enquiries");
+$inquiries_count = mysqli_fetch_assoc($inquiries_count_result)['count'];
+
+mysqli_close($conn);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .wrapper{
-            display: flex;
-            width: 100%;
-        }
-        #sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            background: #7386D5;
-            color: #fff;
-            transition: all 0.3s;
-        }
-    </style>
-</head>
-<body>
+<div class="container-fluid">
+    <h1 class="mt-4">Dashboard</h1>
+    <p>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>! This is your admin dashboard.</p>
 
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Admin Panel</h3>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Products</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $products_count; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-box fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <ul class="list-unstyled components">
-            <p>Wholesaler Site</p>
-            <li class="active">
-                <a href="<?php echo BASE_URL; ?>/admin/dashboard.php">Dashboard</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/categories.php">Categories</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/brands.php">Brands</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/products.php">Products</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/inquiries.php">Inquiries</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/messages.php">Contact Messages</a>
-            </li>
-            <li>
-                <a href="<?php echo BASE_URL; ?>/admin/users.php">Users</a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Page Content -->
-    <div id="content" class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Dashboard</a>
-                <a href="<?php echo BASE_URL; ?>/admin/logout.php" class="btn btn-danger">Logout</a>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Categories</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $categories_count; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-sitemap fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
-                <p>This is your admin dashboard. You can manage your website content from here.</p>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Brands</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $brands_count; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tags fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">New Inquiries</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $inquiries_count; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php
+require_once __DIR__ . '/../templates/admin_footer.php';
+?>

@@ -8,7 +8,7 @@ RewriteEngine On
 # If your website is at the root of your domain (e.g., http://example.com/),
 # you can comment out the RewriteBase line or set it to /.
 # ----------------------------------------------------------------------
-# RewriteBase /your-subfolder/
+RewriteBase /wholesaler-wholesaler-product-showcase/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
